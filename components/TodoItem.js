@@ -10,7 +10,11 @@ export class TodoItem {
                 <input type="checkbox">
                 ${this.props.title}
             </label>
-            <button>Удалить</button>
+            <button class="remove">Удалить</button>
         `;
+
+        this.el.querySelector(".remove").addEventListener("click", () => {
+            alert("удалтиь");
+        });
     }
 }
