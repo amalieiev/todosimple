@@ -10,6 +10,7 @@ export class TodoPage {
     render() {
         this.el.innerHTML = `
             <h2>Список дел</h2>
+            <input>
             <div class="todo-list"></div>
         `;
 
