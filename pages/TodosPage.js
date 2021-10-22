@@ -34,9 +34,9 @@ export function TodosPage({ todos }) {
     });
 
     return `
-        <input type="text">
+        <input type="text" class="mt-1">
         <button id="add">Add</button>
-        <div>
+        <div class="mt-1">
             <label>
                 <input type="radio" name="showmode" value="all" >
                 All
@@ -50,6 +50,6 @@ export function TodosPage({ todos }) {
                 Completed
             </label>
         </div>
-        <ul id="todos"></ul>
+        <ul id="todos" class="mt-1"></ul>
     `;
 }
