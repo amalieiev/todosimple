@@ -38,7 +38,7 @@ export function TodosPage({ todos }) {
         <button id="add">Add</button>
         <div>
             <label>
-                <input type="radio" name="showmode" value="all" checked >
+                <input type="radio" name="showmode" value="all" >
                 All
             </label>
             <label>
