@@ -21,6 +21,22 @@ export function Layout(props) {
             }
         );
 
+        fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
+            .then((response) => response.json())
+            .then((data) =>
+                data.map((item) => {
+                    return {
+                        ...item,
+                        active: !item.completed,
+                        title: item.title.slice(0, 15),
+                    };
+                })
+            )
+            .then((data) => {
+                props.todos.next(data);
+                render(Router, props, el.querySelector("#router"));
+            });
+
         render(Router, props, el.querySelector("#router"));
     });
 

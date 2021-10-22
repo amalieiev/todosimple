@@ -5,6 +5,8 @@ export function EditPage({ todos }) {
     const current = todos.value.find((item) => item.id === +id);
 
     useParent((el) => {
+        if (!current) return;
+
         el.querySelector('[data-action="cancel"]').addEventListener(
             "click",
             () => {
@@ -30,6 +32,10 @@ export function EditPage({ todos }) {
             }
         );
     });
+
+    if (!current) {
+        return "loading...";
+    }
 
     return `
         <input type="text" value="${current.title}">
