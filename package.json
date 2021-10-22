@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server -p 3000"
+    "start": "http-server -p 3000 -o -e js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "http-server": "^14.0.0"
+  },
+  "devDependencies": {
+    "mkcert": "^1.4.0",
+    "webpack-cli": "^4.9.1"
   }
 }

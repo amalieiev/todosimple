@@ -1,20 +1,17 @@
-export class TodoItem {
-    constructor(props, el) {
-        this.el = el || document.createElement("div");
-        this.props = props;
-    }
+import { useParent } from "../core/index.js";
 
-    render() {
-        this.el.innerHTML = `
-            <label>
-                <input type="checkbox">
-                ${this.props.title}
-            </label>
-            <button class="remove">Удалить</button>
-        `;
-
-        this.el.querySelector(".remove").addEventListener("click", () => {
-            alert("удалтиь");
+export function TodoItem({ title, id, active, onRemove }) {
+    useParent((el) => {
+        el.querySelector(".remove").addEventListener("click", () => {
+            onRemove(id);
         });
-    }
+    });
+
+    return `
+        <label>
+            <input type="checkbox" ${active ? "" : "checked"}>
+            ${title}
+        </label>
+        <button class="remove">Remove</button>
+    `;
 }
