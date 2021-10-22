@@ -1,7 +1,9 @@
 import { TodoList } from "../components/TodoList.js";
-import { render, useParent } from "../core/index.js";
+import { render, Subject, useParent } from "../core/index.js";
 
 export function TodosPage({ todos }) {
+    const showmode = new Subject("all");
+
     useParent((el) => {
         el.querySelector("#add").addEventListener("click", () => {
             todos.next([
@@ -13,15 +15,41 @@ export function TodosPage({ todos }) {
                 },
             ]);
 
-            render(TodoList, { todos }, el.querySelector("#todos"));
+            render(TodoList, { todos, showmode }, el.querySelector("#todos"));
         });
 
-        render(TodoList, { todos }, el.querySelector("#todos"));
+        el.querySelectorAll(['[name="showmode"]']).forEach((radio) => {
+            radio.addEventListener("change", (event) => {
+                showmode.next(event.target.value);
+
+                render(
+                    TodoList,
+                    { todos, showmode },
+                    el.querySelector("#todos")
+                );
+            });
+        });
+
+        render(TodoList, { todos, showmode }, el.querySelector("#todos"));
     });
 
     return `
         <input type="text">
         <button id="add">Add</button>
+        <div>
+            <label>
+                <input type="radio" name="showmode" value="all" checked >
+                All
+            </label>
+            <label>
+                <input type="radio" name="showmode" value="active" >
+                Active
+            </label>
+            <label>
+                <input type="radio" name="showmode" value="completed" >
+                Completed
+            </label>
+        </div>
         <ul id="todos"></ul>
     `;
 }
