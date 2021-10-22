@@ -3,7 +3,7 @@ import { EditPage } from "../pages/EditPage.js";
 import { LoginPage } from "../pages/LoginPage.js";
 import { TodosPage } from "../pages/TodosPage.js";
 
-export function Router(params) {
+export function Router({ todos }) {
     const hash = location.hash;
 
     useParent((el) => {
@@ -13,10 +13,10 @@ export function Router(params) {
         }
 
         if (/edit/.test(hash)) {
-            render(EditPage, {}, el);
+            render(EditPage, { todos }, el);
             return;
         }
 
-        render(TodosPage, params, el);
+        render(TodosPage, { todos }, el);
     });
 }

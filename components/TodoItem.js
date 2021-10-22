@@ -9,6 +9,10 @@ export function TodoItem({ title, id, active, onRemove, onToggle }) {
         el.querySelector("input").addEventListener("change", (event) => {
             onToggle(id, event.target.checked);
         });
+
+        el.querySelector("label").addEventListener("click", () => {
+            location.hash = `edit/${id}`;
+        });
     });
 
     return `

@@ -7,21 +7,31 @@ export function Layout(props) {
             render(Router, props, el.querySelector("#router"));
         });
 
+        el.querySelector('[data-action="login"]').addEventListener(
+            "click",
+            () => {
+                location.hash = "todos";
+            }
+        );
+
+        el.querySelector('[data-action="logout"]').addEventListener(
+            "click",
+            () => {
+                location.hash = "login";
+            }
+        );
+
         render(Router, props, el.querySelector("#router"));
     });
 
     return `
-        <ul>
-            <li>
-                <a href="/#login" >login</a>
-            </li>
-            <li>
-                <a href="/#todos">todos</a>
-            </li>
-            <li>
-                <a href="/#edit">edit</a>
-            </li>
-        </ul>
+        <div class="row between items-center">
+            <p></p>
+            <div class="row">
+                <button data-action="login">login</button>
+                <button data-action="logout">logout</button>
+            </div>
+        </div>
         
         <div id="router"><div>
     `;
