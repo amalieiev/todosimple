@@ -17,6 +17,7 @@ export class Subject {
 
 export function render(component, props, parent) {
     globalParent = parent;
+    useParent(() => {}); // TODO WHY?
     const html = component(props);
     parent.innerHTML = html;
     const context = componentContext.get(parent);

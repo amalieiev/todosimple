@@ -12,10 +12,8 @@ export function TodoItem({ title, id, active, onRemove, onToggle }) {
     });
 
     return `
-        <label>
-            <input type="checkbox" ${active ? "" : "checked"}>
-            ${title}
-        </label>
+        <input type="checkbox" ${active ? "" : "checked"}>
+        <label>${title}</label>
         <button class="remove">Remove</button>
     `;
 }
